@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.9.6 on darwin)" generated="20230831 12:48:30.748" rpa="false" schemaversion="3">
+<suite id="s1" name="TC01: GET LIST USERS DATA FOUND" source="/Users/siripornk/Downloads/REQRES_API-main/testcases/TC01: GET LIST USERS DATA FOUND.robot">
+<test id="s1-t1" name="TC01: GET LIST USERS DATA FOUND" line="9">
+<kw name="Send request api method get || delete" library="REQRES_API">
+<arg>method=GET</arg>
+<arg>apiName=LIST USERS</arg>
+<arg>endPointUrl=/api/users?page=2</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${apiName}</arg>
+<arg>${URL}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230831 12:48:30.891" level="INFO">Creating Session using : alias=LIST USERS, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230831 12:48:30.891" endtime="20230831 12:48:30.891"/>
+</kw>
+<kw name="Prepare data header parameter" library="REQRES_API">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230831 12:48:30.891" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230831 12:48:30.891" endtime="20230831 12:48:30.891"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${headers}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230831 12:48:30.892" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230831 12:48:30.892" endtime="20230831 12:48:30.892"/>
+</kw>
+<status status="PASS" starttime="20230831 12:48:30.891" endtime="20230831 12:48:30.892"/>
+</kw>
+<if>
+<branch type="IF" condition="'${method}' == 'GET'">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${apiName}</arg>
+<arg>url=${endPointUrl}</arg>
+<arg>expected_status=anything</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230831 12:48:31.528" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230831 12:48:31.528" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 31 Aug 2023 12:48:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'MISS', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=2KV63250OsPA8p5Z7oJsMSmYChxxD5pLlHKoq7e%2BIoc4OR1Xb6NNZhrUTBFn3oLPSz59%2FfpWk84Pta8JsJRQ7e1jAAAalegYQLy6kayjwoz%2FJDuP36pc184QtXGEBh6tyX2BZI7nYQ%3D%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '7ff56361fe622dbc-BKK', 'Content-Encoding': 'gzip'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20230831 12:48:31.528" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230831 12:48:30.892" endtime="20230831 12:48:31.528"/>
+</kw>
+<status status="PASS" starttime="20230831 12:48:30.892" endtime="20230831 12:48:31.528"/>
+</branch>
+<branch type="ELSE IF" condition="'${method}' == 'DELETE'">
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${apiName}</arg>
+<arg>url=${endPointUrl}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" starttime="20230831 12:48:31.528" endtime="20230831 12:48:31.528"/>
+</kw>
+<status status="NOT RUN" starttime="20230831 12:48:31.528" endtime="20230831 12:48:31.528"/>
+</branch>
+<status status="PASS" starttime="20230831 12:48:30.892" endtime="20230831 12:48:31.528"/>
+</if>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230831 12:48:31.529" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230831 12:48:31.528" endtime="20230831 12:48:31.529"/>
+</kw>
+<status status="PASS" starttime="20230831 12:48:30.891" endtime="20230831 12:48:31.529"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20230831 12:48:31.529" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230831 12:48:31.529" endtime="20230831 12:48:31.529"/>
+</kw>
+<status status="PASS" starttime="20230831 12:48:30.891" endtime="20230831 12:48:31.530"/>
+</test>
+<status status="PASS" starttime="20230831 12:48:30.749" endtime="20230831 12:48:31.530"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="TC01: GET LIST USERS DATA FOUND">TC01: GET LIST USERS DATA FOUND</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
